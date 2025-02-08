@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Loan Applications</title>
+</head>
+<body>
+
+<h2>Apply for loan application</h2>
+
+<a th:href="@{/api/loan/apply}" style="color:blue;">Click here to Apply</a>
+
+<h2>Loan Applications</h2>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Loan Amount</th>
+        <th>Credit Score</th>
+        <th>Status</th>
+    </tr>
+    <tr th:each="loan : ${loans}">
+        <td th:text="${loan.id}"></td>
+        <td th:text="${loan.applicantName}"></td>
+        <td th:text="${loan.email}"></td>
+        <td th:text="${loan.loanAmount}"></td>
+        <td th:text="${loan.creditScore}"></td>
+        <td>
+            <span th:text="${loan.status}" 
+                  th:style="${loan.status == 'APPROVED' ? 'color:green;' : (loan.status == 'REJECTED' ? 'color:red;' : 'color:orange;')}">
+            </span>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
